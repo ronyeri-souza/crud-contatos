@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport">
+<title>Formulário de Contato</title>
+<link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/exibirContato">Cadastrar Contato</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/listarContatos">Listar Contatos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container col-sm-12 col-md-6 col-md-offset-2">
+	<form action="/salvarContato" th:object="${contato}" method="post">
+		<div class="form-group">
+			<label for="nome">Nome</label>
+			<input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Qual o nome do contato?"/>
+		</div>
+		<div class="form-group">
+			<label for="telefone">Telefone</label>
+			<input type="tel" th:field="*{telefone}" class="form-control" id="telefone" placeholder="Telefone do contato"/>
+		</div>
+		<div class="form-group">
+			<label for="email">E-mail</label>
+			<input type="email" th:field="*{email}" class="form-control" id="email" aria-describedby="emailHelp" placeholder="E-mail do contato"/>
+		</div>
+		<div class="form-group form-check">
+			<label for="apps">App de Mensagem</label><br/>
+				<div class="form-check form-check-inline">
+					<input type="checkbox" class="form-check-input" th:field="*{appMensagens}" th:value="Whatsapp"/>
+					<label class="form-check-label">Whatsapp</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="checkbox" class="form-check-input" th:field="*{appMensagens}" th:value="Telegram"/>
+					<label class="form-check-label">Telegram</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="checkbox" class="form-check-input" th:field="*{appMensagens}" th:value="Slack"/>
+					<label class="form-check-label">Slack</label>
+				</div>
+		</div>
+		<div class="form-group form-check">
+			<label for="grupo">Grupo</label><br/>
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" th:field="*{grupo}" th:value="F"/>
+					<label class="form-check-label">Família</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input type="radio" class="form-check-input" th:field="*{grupo}" th:value="T"/>
+					<label class="form-check-label">Trabalho</label>
+				</div>
+				<div class="for-check form-check-inline">
+					<input type="radio" class="form-check-input" th:field="*{grupo}" th:value="A"/>
+					<label class="form-check-label">Amigos</label>
+				</div>
+		</div>
+		<div class="form-group">
+			<label for="dataNascimento">Data de Nascimento</label>
+			<input type="date" class="form-control" th:field="*{dataNascimento}"/>
+		</div>
+		<div class="form-group">
+			<label for="estado">Estado</label>
+			<select class="form-control" th:field="*{estadoNatal}">
+				<option th:value="''">Selecione</option>
+				<option th:value="SP">São Paulo</option>
+				<option th:value="RJ">Rio de Janeiro</option>
+				<option th:value="RS">Rio Grande do Sul</option>
+				<option th:value="PE">Pernambuco</option>
+			</select>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-primary">Salvar</button>
+		</div>
+	</form>
+</div>
+
+<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Contatos</title>
+<link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/exibirContato">Cadastrar Contato</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/listarContatos">Listar Contatos</a>
+      </li>
+    </ul>
+  </div>
+</nav><br/><br/>
+<div class="container">
+<a href="/exibirContato" class="btn btn-primary">Voltar</a>
+</div><br/>
+<div class="container col-sm-12  col-md-offset-2">
+	<table class="table table-dark">
+		<tr>
+			<th>Nome</th>
+			<th>Telefone</th>
+			<th>E-mail</th>
+			<th>Ações</th>
+		</tr>
+		<tr th:each="cont : ${lista}">
+			<td th:text="${cont.nome}"></td>
+			<td th:text="${cont.telefone}"></td>
+			<td th:text="${cont.email}"></td>
+			<td>
+				<a class="btn btn-warning" th:href="@{/editarContato(email=${cont.email})}">Editar</a>&nbsp; &nbsp;
+				<a class="btn btn-danger" th:href="@{/removerContato(email=${cont.email})}">Remover</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<script th:src="@{https://code.jquery.com/jquery-3.3.1.slim.min.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js}"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
